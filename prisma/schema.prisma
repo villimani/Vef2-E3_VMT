@@ -14,7 +14,24 @@ datasource db {
 }
 
 model Categories {
-  id    Int    @id @default(autoincrement())
-  title String @unique
-  slug  String @unique
+  id        Int        @id @default(autoincrement())
+  title     String     @unique
+  slug      String     @unique
+  questions Question[] 
+}
+
+model Question {
+  id          Int      @id @default(autoincrement())
+  text        String   
+  categoryId  Int      
+  category    Categories @relation(fields: [categoryId], references: [id])
+  options     Option[] 
+}
+
+model Option {
+  id          Int      @id @default(autoincrement())
+  text        String   
+  isCorrect   Boolean 
+  questionId  Int      
+  question    Question @relation(fields: [questionId], references: [id]) 
 }
