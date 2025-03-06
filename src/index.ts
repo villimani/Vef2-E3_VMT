@@ -316,7 +316,7 @@ app.delete('/categories/:slug', async (c) => {
       return c.json({ message: 'Category not found' }, 404);
     }
 
-    return c.json(null, 204);
+    return c.body(null, 204);
   } catch (error) {
     console.error('Error deleting category:', error);
     return c.json({ error: 'Internal Server Error' }, 500);
@@ -731,7 +731,7 @@ app.delete('/questions/:id', async (c) => {
   const id = parseInt(c.req.param('id'));
   try {
     await deleteQuestion(id);
-    return c.json(null, 204);
+    return c.body(null, 204);
   } catch (error) {
     console.error('Error deleting question:', error);
     return c.json({ error: 'Internal Server Error' }, 500);
